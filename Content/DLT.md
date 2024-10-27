@@ -40,7 +40,14 @@ This understanding of DL focuses our research on the following issues.
 
 ### An Oriented Ring
 
-
+```mermaid
+graph LR
+  a((1)) --> b((2))
+  e((5)) --> a
+  b --> c((3))
+  c --> d((4))
+  d --> e
+```
 
 ### An Unoriented Ring
 
