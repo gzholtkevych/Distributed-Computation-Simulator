@@ -13,7 +13,7 @@ of the stored information.
 This understanding of DL focuses our research on the following issues.
 
 1. The network topology of DL.
-2. Network nodes communication specificity.
+2. Specificity to communicate network nodes.
 3. Local behavior of each network node.
 
 ## Network Topology
@@ -48,3 +48,11 @@ This understanding of DL focuses our research on the following issues.
 
 ### An Unoriented Tree
 
+A network topology is ***unoriented tree-like*** if for any $n',n''\in P$, there exists exactly one sequence $n_k\in P$, $k=1,\ldots,m$ such that
+
+- $n_1=n'$ and $n_m=n''$;
+- $n_{k+1}\in\mathrm{addressees}(n_k)$ for $k=1,\ldots,m-1$.
+
+## Communication of Network Nodes
+
+It is assumed that network nodes communicate only by message passing.
