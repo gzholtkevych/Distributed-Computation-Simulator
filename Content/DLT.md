@@ -51,7 +51,20 @@ This understanding of DL focuses our research on the following issues.
 A network topology is ***unoriented tree-like*** if for any $n',n''\in P$, there exists exactly one sequence $n_k\in P$, $k=1,\ldots,m$ such that
 
 - $n_1=n'$ and $n_m=n''$;
-- $n_{k+1}\in\mathrm{addressees}(n_k)$ for $k=1,\ldots,m-1$.
+- for any $1\leq k<l\leq m$, $n_k\neq n_l$;
+- for any $k=1,\ldots,m-1$, $n_{k+1}\in\mathrm{addressees}(n_k)$ .
+
+```mermaid
+graph LR
+  a((1)) --- b((2))
+  c((3)) --- b
+  b --- d((4))
+  d --- e((5))
+  d --- f((6))
+  e --- g((7))
+  e --- h((8))
+  e --- i((9))
+```
 
 ## Communication of Network Nodes
 
