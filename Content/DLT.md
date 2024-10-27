@@ -56,14 +56,14 @@ A network topology is ***unoriented tree-like*** if for any $n',n''\in P$, there
 
 ```mermaid
 graph LR
-  a((1)) --- b((2))
-  c((3)) --- b
-  b --- d((4))
-  d --- e((5))
-  d --- f((6))
-  e --- g((7))
-  e --- h((8))
-  e --- i((9))
+  a((1)) <--> b((2))
+  c((3)) <--> b
+  b <--> d((4))
+  d <--> e((5))
+  d <--> f((6))
+  e <--> g((7))
+  e <--> h((8))
+  e <--> i((9))
 ```
 
 ## Communication of Network Nodes
