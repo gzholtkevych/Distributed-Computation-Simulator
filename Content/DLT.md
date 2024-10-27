@@ -18,22 +18,20 @@ This understanding of DL focuses our research on the following issues.
 
 ## Network Topology
 
-$\newcommand{\addrs}{\mathrm{addressees}}$
-
 > A ***network topology*** is defined by
 >
 >- a finite set $P$ of nodes which contains at least two members,
->- a function $\addrs: P\rightarrow 2^P$ that associates the set of addressee nodes with each node.
+>- a function $\mathrm{addressees}: P\rightarrow 2^P$ that associates the set of addressee nodes with each node.
 >
 > It is assumed also the following constraints
 >
-> - for any $n\in P$, $n\notin\addrs(n)$;
+> - for any $n\in P$, $n\notin\mathrm{addressees}(n)$;
 > - ***connectivity:*** for any $n'\neq n''\in P$, there exist $n_k\in P,\ k=1,\ldots,m$ where $m \geq 2$ such that
 >    - $n_1=n'$ and $n_m=n''$;
->    - $n_{k+1}\in\addrs(n_k)$ for all $k=1,\ldots,m-1$.
+>    - $n_{k+1}\in\mathrm{addressees}(n_k)$ for all $k=1,\ldots,m-1$.
 
 > If a network topology satisfies the constraint
 >
-> - for any $n'\neq n''\in P$, $n'\in\addrs(n'')$ implies $n''\in\addrs(n')$
+> - for any $n'\neq n''\in P$, $n'\in\mathrm{addressees}(n'')$ implies $n''\in\mathrm{addressees}(n')$
 >
 > then the network is called ***unoriented***.
