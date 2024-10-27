@@ -35,3 +35,16 @@ This understanding of DL focuses our research on the following issues.
 > - for any $n'\neq n''\in P$, $n'\in\mathrm{addressees}(n'')$ implies $n''\in\mathrm{addressees}(n')$
 >
 > then the network is called ***unoriented***.
+
+## Examples of Networks
+
+### An Oriented Ring
+
+
+
+### An Unoriented Ring
+
+
+
+### An Unoriented Tree
+
