@@ -23,7 +23,7 @@ This understanding of DL focuses our research on the following issues.
 >- a finite set $P$ of nodes which contains at least two members,
 >- a function $\mathrm{addressees}: P\rightarrow 2^P$ that associates the set of addressee nodes with each node.
 >
-> It is assumed also the following constraints
+> It is assumed that the following constraints
 >
 > - for any $n\in P$, $n\notin\mathrm{addressees}(n)$;
 > - ***connectivity:*** for any $n'\neq n''\in P$, there exist $n_k\in P,\ k=1,\ldots,m$ where $m \geq 2$ such that
