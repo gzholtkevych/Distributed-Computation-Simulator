@@ -27,8 +27,10 @@ This understanding of DL focuses our research on the following issues.
 >
 > - for any $n\in P$, $n\notin\mathrm{addressees}(n)$;
 > - ***connectivity:*** for any $n'\neq n''\in P$, there exist $n_k\in P,\ k=1,\ldots,m$ where $m \geq 2$ such that
->    - $n_1=n'$ and $n_m=n''$;
->    - $n_{k+1}\in\mathrm{addressees}(n_k)$ for all $k=1,\ldots,m-1$.
+>   - $n_1=n'$ and $n_m=n''$;
+>   - $n_{k+1}\in\mathrm{addressees}(n_k)$ for all $k=1,\ldots,m-1$.
+
+---
 
 > If a network topology satisfies the constraint
 >
@@ -40,18 +42,7 @@ This understanding of DL focuses our research on the following issues.
 
 ### An Oriented Ring
 
-```mermaid
-graph LR
-  a((1)) --> b((2))
-  e((5)) --> a
-  b --> c((3))
-  c --> d((4))
-  d --> e
-```
-
 ### An Unoriented Ring
-
-
 
 ### An Unoriented Tree
 
@@ -61,18 +52,9 @@ A network topology is ***unoriented tree-like*** if for any $n',n''\in P$, there
 - for any $1\leq k<l\leq m$, $n_k\neq n_l$;
 - for any $k=1,\ldots,m-1$, $n_{k+1}\in\mathrm{addressees}(n_k)$ .
 
-```mermaid
-graph LR
-  a((1)) <--> b((2))
-  c((3)) <--> b
-  b <--> d((4))
-  d <--> e((5))
-  d <--> f((6))
-  e <--> g((7))
-  e <--> h((8))
-  e <--> i((9))
-```
-
 ## Communication of Network Nodes
 
 It is assumed that network nodes communicate only by message passing.
+
+We assume that node $n\in P$ can directly send a message to node $n'\neq n\in P$ if $n'\in\mathrm{addresses}(n)$.
+In other words, $n'\in\mathrm{addresses}(n)$ indicates the existence of a one-way channel from $n$ to $n'$.
