@@ -58,3 +58,52 @@ It is assumed that network nodes communicate only by message passing.
 
 We assume that node $n\in P$ can directly send a message to node $n'\neq n\in P$ if $n'\in\mathrm{addresses}(n)$.
 In other words, $n'\in\mathrm{addresses}(n)$ indicates the existence of a one-way channel from $n$ to $n'$.
+
+## Appendix
+
+### Node Behavior for Ledger based on Oriented Ring with FIFO channels
+
+```python
+class Node:
+    def __init__(self, id: int):
+        self.__id = id
+        self.__ledger = []
+        self.__queue: List[Any] = []
+        self.__lts: int = 0
+        self.__ts: int  = 0
+
+    def behavior(self):
+        def handle_write_request(data: Any):
+            offer = ("offer", self.__id, self.__ts)
+            self.queue.append(data)
+            self.__ts += 1
+            send(offer)
+        # end of handle_write_request()
+        def handle_offer(offer: Tuple[int, int]):
+            if offer[0] == self.__id:
+                data, self.__queue = self.__queue[0], self.__queue[1 :]
+                grant = ("grant", self.__id, self.__lts, offer[1], data)
+                self.__ledger.append(item[1 :])
+                send(grant)
+            else:
+                ts = max(offer[1], self.__ts)
+                new_offer = ("offer", offer[0], ts)
+                self.__ts = ts + 1
+                send(new_offer)
+        # end of handle_offer()
+        def handle_grant(grant: Tuple[int, int, int, Any]):
+            if grant[0] != self.__id:
+                self.__ledger.append(grant[1 :])
+                send(grant)
+            else:
+                pass
+        # end of handle_grant()
+        while True:
+            msg: Tuple[str, Any] = wait()
+            if msg[0] == "wreq":
+                handle_write_request(msg[1])
+            elif msg[0] == "offer":
+                handle_offer(msg[1 :])
+            elif msg[0] == "grant":
+                handle_grant(msg[1 :])
+```
