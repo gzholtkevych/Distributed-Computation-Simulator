@@ -46,7 +46,7 @@ This understanding of DL focuses our research on the following issues.
 
 ### An Unoriented Tree
 
-A network topology is ***unoriented tree-like*** if for any $n',n''\in P$, there exists exactly one sequence $n_k\in P$, $k=1,\ldots,m$ such that
+A network topology is ***unoriented tree-like*** if for any $n',n''\in P$, there exists exactly one sequence $n_k\in P$, $k=1,\ldots,m$ where $m\geq 2$ such that
 
 - $n_1=n'$ and $n_m=n''$;
 - for any $1\leq k<l\leq m$, $n_k\neq n_l$;
