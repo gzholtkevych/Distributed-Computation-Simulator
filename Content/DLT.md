@@ -61,7 +61,7 @@ In other words, $n'\in\mathrm{addresses}(n)$ indicates the existence of a one-wa
 
 ## Appendix
 
-### Node Behavior for Ledger based on Oriented Ring with FIFO channels
+### Node Behavior for DL based on Oriented Ring with FIFO channels
 
 ```python
 class Node:
