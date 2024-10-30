@@ -76,7 +76,7 @@ class Node:
     def behavior(self):
         def handle_write_request(data: Any):
             offer = ("offer", self.__id, self.__ts)
-            self.queue.append(data)
+            self.__queue.append(data)
             self.__ts += 1
             self.__network.send(offer)
         # end of handle_write_request()
@@ -84,7 +84,8 @@ class Node:
             if offer[0] == self.__id:
                 data, self.__queue = self.__queue[0], self.__queue[1 :]
                 grant = ("grant", self.__id, self.__lts, offer[1], data)
-                self.__ledger.append(item[1 :])
+                self.__lts += 1
+                self.__ledger.append(grant[1 :])
                 self.__network.send(grant)
             else:
                 ts = max(offer[1], self.__ts)
