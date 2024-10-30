@@ -61,11 +61,12 @@ In other words, $n'\in\mathrm{addresses}(n)$ indicates the existence of a one-wa
 
 ## Appendix
 
-### Node Behavior for DL based on Oriented Ring with FIFO channels
+### DL Node Behavior for Oriented Ring with FIFO channels
 
 ```python
 class Node:
-    def __init__(self, id: int):
+    def __init__(self, network, id: int):
+        self.__network = network 
         self.__id = id
         self.__ledger = []
         self.__queue: List[Any] = []
@@ -77,33 +78,43 @@ class Node:
             offer = ("offer", self.__id, self.__ts)
             self.queue.append(data)
             self.__ts += 1
-            send(offer)
+            self.__network.send(offer)
         # end of handle_write_request()
         def handle_offer(offer: Tuple[int, int]):
             if offer[0] == self.__id:
                 data, self.__queue = self.__queue[0], self.__queue[1 :]
                 grant = ("grant", self.__id, self.__lts, offer[1], data)
                 self.__ledger.append(item[1 :])
-                send(grant)
+                self.__network.send(grant)
             else:
                 ts = max(offer[1], self.__ts)
                 new_offer = ("offer", offer[0], ts)
                 self.__ts = ts + 1
-                send(new_offer)
+                self.__network.send(new_offer)
         # end of handle_offer()
         def handle_grant(grant: Tuple[int, int, int, Any]):
             if grant[0] != self.__id:
                 self.__ledger.append(grant[1 :])
-                send(grant)
+                self.__network.send(grant)
             else:
                 pass
         # end of handle_grant()
-        while True:
-            msg: Tuple[str, Any] = wait()
+        while True:  # main loop
+            while True:  # wait for a message
+                msg: Optionanal[Tuple[str, Any]] = network.receive()
+                if msg is None:
+                    continue
+            # end of waiting
             if msg[0] == "wreq":
                 handle_write_request(msg[1])
             elif msg[0] == "offer":
                 handle_offer(msg[1 :])
             elif msg[0] == "grant":
                 handle_grant(msg[1 :])
+```
+
+### DL Node Behavior for Oriented Ring
+
+```python
+
 ```
