@@ -114,6 +114,25 @@ class Node:
                 handle_grant(msg[1 :])
 ```
 
+
+
+prove：
+
+```python
+1. Timestamp Consistency
+handle_write_request Method: When a node receives a write request, it creates an "offer" message that includes the current local timestamp (ts). Before sending the "offer," the node appends the request data to its queue and increments the timestamp. This ensures that the timestamp of the sent "offer" reflects the state of the node after processing the request.
+
+handle_offer Method: When the node receives an "offer," if the "offer" is from itself, the node processes the data from its queue and sends a "grant" message. During the processing of the "offer," the node updates its timestamp to be the maximum of the received timestamp and its current timestamp, ensuring that the new "offer" has a valid timestamp. This handling guarantees the monotonicity of timestamps.
+
+2. Event Causality
+Processing Logic: When the node sends a "grant" message, it includes the current local timestamp (lts) along with the corresponding data from its queue. Each time the node processes a request (whether "wreq," "offer," or "grant"), it follows a strict order, ensuring that the event causality is maintained. Specifically, if an event from node A affects an event at node B, then the timestamp of node A's event will precede the timestamp of node B's event.
+    
+Conclusion
+The logic implemented in the code ensures that under the conditions of reliable channels and adherence to the algorithm by all nodes, both timestamp consistency and event causality are preserved. Therefore, the logical clock algorithm is correct.
+```
+
+
+
 ### DL Node Behavior for Oriented Ring
 
 ```python
